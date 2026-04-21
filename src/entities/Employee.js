@@ -1,3 +1,5 @@
+import { Booking } from "./Booking";
+
 export class Employee {
     constructor(initObj) {
         this.name = initObj.name;
