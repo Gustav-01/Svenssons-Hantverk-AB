@@ -11,7 +11,7 @@ export class BookingService {
 
         const jsonData = await apiService.getAllData();        
         const allEmployees = jsonData.map(e => new Employee(e));
-        
+        return allEmployees;
     }
 
     
