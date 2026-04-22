@@ -6,3 +6,6 @@ import NameColumnComponent from './NameColumnComponent.vue';
 <template>
 
 </template>
+
+<style scope>
+</style>

@@ -1,6 +1,7 @@
 <script setup>
-import { BookingService } from './services/BookingService';
+import NameColumnComponent from './components/NameColumnComponent.vue';
 import StatusComponent from './components/StatusComponent.vue'
+import  StatusComponent from './components/StatusComponent.vue'
 import { onMounted, ref } from 'vue';
 
 const employees = ref([]);
@@ -11,10 +12,12 @@ onMounted(async function () {
   console.log(data);
   employees.value = data;
 });
+
 </script>
 
 <template>
-  <StatusComponent></StatusComponent>
+    <StatusComponent></StatusComponent>
+    <NameColumnComponent></NameColumnComponent>
   <ul>
     <li v-for="employee in employees" :key="employee.name">Name: {{ employee.name }}</li>
   </ul>
