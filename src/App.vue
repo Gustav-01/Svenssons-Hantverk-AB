@@ -1,14 +1,14 @@
 <script setup>
 import NameColumnComponent from './components/NameColumnComponent.vue';
 import StatusComponent from './components/StatusComponent.vue'
-import  StatusComponent from './components/StatusComponent.vue'
 import { onMounted, ref } from 'vue';
+import EmployeeService from './services/EmployeeService';
 
 const employees = ref([]);
-const bookingService = new BookingService();
+const employeeService = new EmployeeService();
 
 onMounted(async function () {
-  const data = await bookingService.getAllEmployees();
+  const data = await employeeService.getAllEmployees();
   console.log(data);
   employees.value = data;
 });

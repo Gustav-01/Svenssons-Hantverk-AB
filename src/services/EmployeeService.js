@@ -1,4 +1,5 @@
 import ApiService from "./ApiService.js"
+import { Employee } from "@/entities/Employee.js";
 
 class EmployeeService {
 
