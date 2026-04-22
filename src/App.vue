@@ -4,6 +4,7 @@ import StatusComponent from './components/StatusComponent.vue'
 import { onMounted, ref } from 'vue';
 import EmployeeService from './services/EmployeeService';
 import ChartComponent from './components/ChartComponent.vue';
+import HeaderComponent from './components/HeaderComponent.vue';
 
 const employees = ref([]);
 const employeeService = new EmployeeService();
@@ -17,6 +18,7 @@ onMounted(async function () {
 </script>
 
 <template>
+  <HeaderComponent/>
     <ChartComponent
     :employees="employees"/>
     <StatusComponent></StatusComponent>
