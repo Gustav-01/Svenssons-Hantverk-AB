@@ -5,23 +5,23 @@
 <template>
     <div class="container">
         <div class="item">
-            <div class="red"></div>
+            <div class="booked100"></div>
             <span>100% Bokad</span>
         </div>
         <div class="item">
-            <div class="orange"></div>
+            <div class="booked50"></div>
             <span>50% Bokad</span>
         </div>
         <div class="item">
-            <div class="white"></div>
+            <div class="available"></div>
             <span>Tillgänglig</span>
         </div>
         <div class="item">
-            <div class="shade"></div>
+            <div class="preliminary"></div>
             <span>Preliminärt bokad</span>
         </div>
         <div class="item">
-            <div class="blue"></div>
+            <div class="absent"></div>
             <span>Frånvaro</span>
         </div>
     </div>
