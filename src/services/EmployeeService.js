@@ -4,33 +4,49 @@ class EmployeeService {
 
     constructor() {
         this.api = new ApiService();
+        this._allEmployees = [];
+    }
+
+    async initEmployeeList() {
+        const data = await this.api.getAllData();
+        const sortedList = data.sort((a, b) => a.name.localeCompare(b.name));
+        this._allEmployees = sortedList.map(e => new Employee(e));
     }
 
     async getAllEmployees() {
-        const data = await this.api.getAllData();
-        const sortedList = data.sort((a, b) => a.name.localeCompare(b.name));
-        return sortedList;
+        if (this._allEmployees.length < 1) {
+            await this.initEmployeeList();
+        }
+        return this._allEmployees;
     }
 
     async getEmployee(index) {
-        const employees = await this.getAllEmployees();
-        return employees[index];
+        if (this._allEmployees.length < 1) {
+            await this.initEmployeeList();
+        }
+        return this._allEmployees[index];
     }
 
     async getProfession(index) {
-        const employee = await this.getEmployee(index);
-        return employee.professions;
+        if (this._allEmployees.length < 1) {
+            await this.initEmployeeList();
+        }
+        return this._allEmployees[index].professions;
     }
 
     async getEmployeesByProfession(profession) {
-        const employees = await this.getAllEmployees();
-        return employees.filter(e => e.professions.includes(profession));
+        if (this._allEmployees.length < 1) {
+            await this.initEmployeeList();
+        }
+        return this._allEmployees.filter(e => e.professions.includes(profession));
     }
 
     async getBookingByDate(index, date) {
-        const employee = await this.getEmployee(index);
-
-        const booking = employee.bookings.find(b => b.from <= date && b.to >= date);
+        if (this._allEmployees.length < 1) {
+            await this.initEmployeeList();
+        }
+        
+        const booking = this._allEmployees[index].bookings.find(b => b.from <= date && b.to >= date);
 
         if (!booking) {
             return { status: "Available", percentage: 0 };
@@ -40,12 +56,12 @@ class EmployeeService {
     }
 
     async getBookingStatus(index, date) {
-        const booking = await this.getBookingByDate(index, date);
+        const booking = this.getBookingByDate(index, date);
         return booking.status;
     }
 
     async getBookingPercentage(index, date) {
-        const booking = await this.getBookingByDate(index, date);
+        const booking = this.getBookingByDate(index, date);
         return booking.percentage;
     }
 
