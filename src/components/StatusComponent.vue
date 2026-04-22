@@ -49,27 +49,24 @@
     border: 1px solid #ccc;
 }
 
-.red {
-    background-color: #F26D63;
+.booked100 {
+    background-color: var(--color-booked100);
 }
 
-.orange {
-    background-color: #FFBA26;
+.booked50 {
+    background-color: var(--color-booked50);
 }
 
-.white {
-    background-color: #ffffff;
+.available {
+    background-color: var(--color-available);
 }
 
-.blue {
-    background-color: #00A1AC;
+.absent {
+    background-color: var(--color-absent);
 }
 
-.shade {
-    background: repeating-linear-gradient(45deg,
-            #ccc,
-            #ccc 2px,
-            #fff 2px,
-            #fff 8px);
+.preliminary {
+    background: var(--color-preliminary)
 }
+
 </style>
