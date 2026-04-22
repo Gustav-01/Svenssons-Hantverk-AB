@@ -1,32 +1,32 @@
 <script setup>
 import painter from '../assets/painter.png'
+import carpenter from '../assets/carpenter.png'
+import electrician from '../assets/electrician.png'
+import plumber from '../assets/plumber.png'
+
+const props = defineProps({
+    name: String,
+    professions: Array
+})
+
+const professionImages = {
+    Painter: painter,
+    Carpenter: carpenter,
+    Electrician: electrician,
+    Plumber: plumber
+}
 </script>
 
 <template>
     <div class="employee-container">
-        <span>Aisha Abdi</span>
-        <img :src="painter" alt="profession image">
+        <span>{{ name }}</span>
+        <div class="icons">
+            <img 
+                v-for="profession in professions" 
+                :key="profession"
+                :src="professionImages[profession]" 
+                alt="profession image"
+            >
+        </div>
     </div>
-</template> 
-
-<style scope>
-    .employee-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border: 1px solid #ddd;
-    padding: 4px 8px;
-
-}
-
-span {
-    font-size: 13px;
-}
-
-img {
-    width: 26px;
-    height: 26px;
-    object-fit: contain;
-}
-
-</style>
+</template>
