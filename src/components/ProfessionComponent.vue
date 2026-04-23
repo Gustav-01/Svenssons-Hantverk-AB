@@ -1,0 +1,45 @@
+<script setup>
+const emit = defineEmits(['filterByProfession'])
+
+function filter(profession) {
+    emit('filterByProfession', profession)
+}
+
+</script>
+
+<template>
+    <div class="professions">
+        <span>Yrke:</span>
+        <button @click="filter('All')" id="all">Alla</button>
+        <button @click="filter('carpenter')" id="carpenter">Snickare</button>
+        <button @click="filter('electrician')" id="electrician">Elektriker</button>
+        <button @click="filter('painter')" id="painter">Målare</button>
+        <button @click="filter('plumber')" id="plumber">Rörmockare</button>
+        <button @click="filter('mason')" id="mason">Murare</button>
+    </div>
+</template>
+
+<style scoped>
+.professions {
+    display: flex;
+    gap: 7px;
+    align-items: center;
+}
+
+button {
+    padding: 5px 10px;
+    font-size: 1em;
+    border-radius: 8px;
+    border: 1px solid grey;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #D9D7D7;
+}
+
+#all {
+    padding: 4px 12px 4px 12px;
+}
+</style>

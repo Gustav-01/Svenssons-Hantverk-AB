@@ -32,15 +32,16 @@
 .container {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 3em;
     padding: 16px;
     border: 1px solid #ccc;
+    width: 200px;
 }
 
 .item {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 1em;
 }
 
 .item div {

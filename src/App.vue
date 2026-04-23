@@ -3,8 +3,11 @@ import NameColumnComponent from './components/NameColumnComponent.vue';
 import StatusComponent from './components/StatusComponent.vue'
 import { onMounted, ref } from 'vue';
 import EmployeeService from './services/EmployeeService';
-import WeekComponent from './components/WeekComponent.vue';
-import { Employee } from './entities/Employee';
+import ChartComponent from './components/ChartComponent.vue';
+import HeaderComponent from './components/HeaderComponent.vue';
+import WeekSpanComponent from './components/WeekSpanComponent.vue';
+import ProfessionComponent from './components/ProfessionComponent.vue';
+import FilterComponent from './components/FilterComponent.vue';
 
 const employees = ref([]);
 const employeeService = new EmployeeService();
@@ -33,13 +36,16 @@ testEmp.value = new Employee({
 </script>
 
 <template>
+  <HeaderComponent/>
+  <FilterComponent/>
+    <ChartComponent
+    :employees="employees"/>
     <StatusComponent></StatusComponent>
-    <NameColumnComponent></NameColumnComponent>
-  <ul>
+  <!-- <ul>
     <li v-for="employee in employees" :key="employee.name">Name: {{ employee.name }}</li>
-  </ul>
+  </ul> -->
+  <WeekComponent :employee="testEmp" :firstDateOfWeek="new Date('2026-05-17')"></WeekComponent>
 
-<WeekComponent :employee="testEmp" :firstDateOfWeek="new Date('2026-05-17')"></WeekComponent>
 </template>
 
 <style scoped></style>
