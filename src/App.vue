@@ -4,6 +4,10 @@ import StatusComponent from './components/StatusComponent.vue'
 import { onMounted, ref } from 'vue';
 import EmployeeService from './services/EmployeeService';
 import ChartComponent from './components/ChartComponent.vue';
+import HeaderComponent from './components/HeaderComponent.vue';
+import WeekSpanComponent from './components/WeekSpanComponent.vue';
+import ProfessionComponent from './components/ProfessionComponent.vue';
+import FilterComponent from './components/FilterComponent.vue';
 
 const employees = ref([]);
 const employeeService = new EmployeeService();
@@ -17,6 +21,8 @@ onMounted(async function () {
 </script>
 
 <template>
+  <HeaderComponent/>
+  <FilterComponent/>
     <ChartComponent
     :employees="employees"/>
     <StatusComponent></StatusComponent>
