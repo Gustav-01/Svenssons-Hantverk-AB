@@ -5,6 +5,7 @@ import { onMounted, ref } from 'vue';
 import EmployeeService from './services/EmployeeService';
 import ChartComponent from './components/ChartComponent.vue';
 import HeaderComponent from './components/HeaderComponent.vue';
+import WeekSpanComponent from './components/WeekSpanComponent.vue';
 
 const employees = ref([]);
 const employeeService = new EmployeeService();
@@ -19,6 +20,7 @@ onMounted(async function () {
 
 <template>
   <HeaderComponent/>
+  <WeekSpanComponent/>
     <ChartComponent
     :employees="employees"/>
     <StatusComponent></StatusComponent>

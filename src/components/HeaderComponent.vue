@@ -19,9 +19,10 @@ header {
 
 h2 {
     color: #000;
-    font-family: Inter;
+    font-family: sans-serif;
     font-size: 2em;
-    font-weight: 900;
+    font-style: normal;
     line-height: normal;
+    font-weight: 900;
 }
 </style>
