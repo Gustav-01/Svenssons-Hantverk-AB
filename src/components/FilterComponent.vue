@@ -2,7 +2,6 @@
 import ProfessionComponent from './ProfessionComponent.vue';
 import WeekSpanComponent from './WeekSpanComponent.vue';
 
-
 </script>
 
 <template>
@@ -15,7 +14,7 @@ import WeekSpanComponent from './WeekSpanComponent.vue';
 <style scoped>
     div {
         display: flex;
-        gap: 14em;
+        gap: 20em;
         margin-top: 2em;
     }
 </style>
