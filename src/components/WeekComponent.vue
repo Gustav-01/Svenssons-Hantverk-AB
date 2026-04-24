@@ -39,13 +39,15 @@ function updateBookingStatusPerDay(weekDates, booking) {
         }        
         bookingStatusPerDay.value.push(status);        
         dayIndex++;
+        console.log(status);
+        
     }
 }
 </script>
 
 <template>
     <div class="week">
-        <div v-for="status in bookingStatusPerDay" :class="status"></div>
+        <div v-for="status in bookingStatusPerDay" :class="status"> </div>
     </div>
 </template>
 
@@ -54,9 +56,14 @@ function updateBookingStatusPerDay(weekDates, booking) {
 .week {
     display: flex;
     box-sizing: border-box;
-
+    /* width: 20%; */
+    flex: 1;
+    
     div {
-        width: 25%;
+        margin-right: 1%;
+        /* width: 20%; */
+        flex: 1;
+        /* border: 1px solid white; */
     }
 }
 

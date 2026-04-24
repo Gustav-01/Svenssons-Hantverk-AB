@@ -16,7 +16,7 @@ defineProps({
     <style scoped>
 
         .chart {
-            display: flex;
             padding-left: 2em;
+            width: 90%;
         }
     </style>

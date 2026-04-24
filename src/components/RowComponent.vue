@@ -21,5 +21,6 @@ defineProps({
 <style scoped>
 .row {
     display: flex;
+    width: 100%
 }
 </style>
