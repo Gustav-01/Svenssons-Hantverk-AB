@@ -3,7 +3,6 @@ import { Employee } from '@/entities/Employee';
 import { ref } from 'vue';
 import { addDays, areIntervalsOverlapping, eachDayOfInterval, isWithinInterval } from "date-fns";
 
-
 const props = defineProps({
     'employee': Employee,
     'firstDateOfWeek': Date,
@@ -37,7 +36,7 @@ function updateBookingStatusPerDay(weekDates, booking) {
                 status = status + percentage;                
             }
 
-        }
+        }        
         bookingStatusPerDay.value.push(status);        
         dayIndex++;
     }
@@ -46,14 +45,23 @@ function updateBookingStatusPerDay(weekDates, booking) {
 
 <template>
     <div class="week">
-        <div v-for="status in bookingStatusPerDay" :class="status">HEEEJ</div>
+        <div v-for="status in bookingStatusPerDay" :class="status"></div>
     </div>
 </template>
 
 <style scoped>
 
+.week {
+    display: flex;
+    box-sizing: border-box;
+
+    div {
+        width: 25%;
+    }
+}
+
 .booked100 {
-    background-color: pink;
+    background-color: var(--color-booked100);
 }
 
 .booked50 {
@@ -61,7 +69,7 @@ function updateBookingStatusPerDay(weekDates, booking) {
 }
 
 .available {
-    background-color: green;
+    background-color: var(--color-available);
 }
 
 .absent {

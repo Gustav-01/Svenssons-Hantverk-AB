@@ -8,6 +8,8 @@ import HeaderComponent from './components/HeaderComponent.vue';
 import WeekSpanComponent from './components/WeekSpanComponent.vue';
 import ProfessionComponent from './components/ProfessionComponent.vue';
 import FilterComponent from './components/FilterComponent.vue';
+import { Employee } from './entities/Employee';
+import WeekComponent from './components/WeekComponent.vue';
 
 const employees = ref([]);
 const employeeService = new EmployeeService();
@@ -16,7 +18,7 @@ const testEmp = ref(undefined);
 onMounted(async function () {
   const data = await employeeService.getAllEmployees();
   employees.value = data;
-  
+
   // testEmp.value = employees.value[0];
   // console.log(testEmp.value.name);
 });
@@ -36,15 +38,14 @@ testEmp.value = new Employee({
 </script>
 
 <template>
-  <HeaderComponent/>
-  <FilterComponent/>
-    <ChartComponent
-    :employees="employees"/>
-    <StatusComponent></StatusComponent>
+  <HeaderComponent />
+  <FilterComponent />
+  <ChartComponent :employees="employees" />
+  <StatusComponent></StatusComponent>
   <!-- <ul>
     <li v-for="employee in employees" :key="employee.name">Name: {{ employee.name }}</li>
   </ul> -->
-  <WeekComponent :employee="testEmp" :firstDateOfWeek="new Date('2026-05-17')"></WeekComponent>
+  <!-- <WeekComponent :employee="testEmp" :firstDateOfWeek="new Date('2026-05-17')"></WeekComponent> -->
 
 </template>
 
