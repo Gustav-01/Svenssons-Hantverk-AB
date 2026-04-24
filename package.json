@@ -13,6 +13,7 @@
     "lint:eslint": "eslint . --fix --cache"
   },
   "dependencies": {
+    "date-fns": "^4.1.0",
     "vue": "^3.5.32"
   },
   "devDependencies": {
