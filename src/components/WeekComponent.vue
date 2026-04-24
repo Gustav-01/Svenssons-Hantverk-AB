@@ -15,6 +15,10 @@ const weekDates = eachDayOfInterval({
     end: addDays(props.firstDateOfWeek, 4),
 });
 
+for (let i = 0; i < weekDates.length; i++) {
+    bookingStatusPerDay.push({ index: i, status: 'available' });
+}
+
 for (let booking of props.employee.bookings) {
     if (areIntervalsOverlapping(
         { start: weekDates[0], end: weekDates[4] },
