@@ -43,7 +43,6 @@ function updateBookingStatusPerDay(booking) {
         }
         bookingStatusPerDay.filter(b => b.index === dayIndex).map(b => b.status = status);
         dayIndex++;
-        console.log(status);
     }
 }
 </script>
