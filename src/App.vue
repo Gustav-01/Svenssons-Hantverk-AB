@@ -1,12 +1,10 @@
 <script setup>
+import { onMounted, ref } from 'vue';
 import NameColumnComponent from './components/NameColumnComponent.vue';
 import StatusComponent from './components/StatusComponent.vue'
-import { onMounted, ref } from 'vue';
 import EmployeeService from './services/EmployeeService';
 import ChartComponent from './components/ChartComponent.vue';
 import HeaderComponent from './components/HeaderComponent.vue';
-import WeekSpanComponent from './components/WeekSpanComponent.vue';
-import ProfessionComponent from './components/ProfessionComponent.vue';
 import FilterComponent from './components/FilterComponent.vue';
 import { Employee } from './entities/Employee';
 import WeekComponent from './components/WeekComponent.vue';
@@ -15,13 +13,12 @@ const employees = ref([]);
 const employeeService = new EmployeeService();
 const testEmp = ref(undefined);
 
-onMounted(async function () {
+async function getData() {
   const data = await employeeService.getAllEmployees();
   employees.value = data;
+}
 
-  // testEmp.value = employees.value[0];
-  // console.log(testEmp.value.name);
-});
+getData();
 
 testEmp.value = new Employee({
   name: 'Bosse',
