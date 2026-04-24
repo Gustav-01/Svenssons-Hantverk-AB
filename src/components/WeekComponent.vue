@@ -8,23 +8,28 @@ const props = defineProps({
     'firstDateOfWeek': Date,
 });
 
-const bookingStatusPerDay = ref([]);
+// const bookingStatusPerDay = ref([]);
+const bookingStatusPerDay = [];
 
 const weekDates = eachDayOfInterval({
     start: props.firstDateOfWeek,
     end: addDays(props.firstDateOfWeek, 4),
 });
 
+for (let i = 0; i < weekDates.length; i++) {
+    bookingStatusPerDay.push({ index: i, status: 'available' });
+}
+
 for (let booking of props.employee.bookings) {
     if (areIntervalsOverlapping(
         { start: weekDates[0], end: weekDates[4] },
         { start: booking.from, end: booking.to },
     )) {
-        updateBookingStatusPerDay(weekDates, booking);
+        updateBookingStatusPerDay(booking);
     }
 }
 
-function updateBookingStatusPerDay(weekDates, booking) {
+function updateBookingStatusPerDay(booking) {
     let dayIndex = 0;
     for (let day of weekDates) {
         let status = 'available';
@@ -33,36 +38,34 @@ function updateBookingStatusPerDay(weekDates, booking) {
             status = booking.status.toLowerCase();
             if (status === 'booked') {
                 const percentage = booking.percentage;
-                status = status + percentage;                
+                status = status + percentage;
             }
-
-        }        
-        bookingStatusPerDay.value.push(status);        
+        }
+        bookingStatusPerDay.filter(b => b.index === dayIndex).map(b => b.status = status);
         dayIndex++;
         console.log(status);
-        
     }
 }
 </script>
 
 <template>
     <div class="week">
-        <div v-for="status in bookingStatusPerDay" :class="status"> </div>
+        <div v-for="bookingStatus in bookingStatusPerDay" :class="bookingStatus.status"> </div>
     </div>
 </template>
 
 <style scoped>
-
 .week {
     display: flex;
     box-sizing: border-box;
-    /* width: 20%; */
-    flex: 1;
-    
+    width: 20%;
+    margin: 0.1rem;
+    /* flex: 1; */
+
     div {
-        margin-right: 1%;
-        /* width: 20%; */
-        flex: 1;
+        margin: 0.05rem;
+        width: 20%;
+        /* flex: 1; */
         /* border: 1px solid white; */
     }
 }
@@ -86,5 +89,4 @@ function updateBookingStatusPerDay(weekDates, booking) {
 .preliminary {
     background: var(--color-preliminary)
 }
-
 </style>

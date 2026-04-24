@@ -39,8 +39,8 @@ const professionImages = {
     border: 1px solid #ddd;
     background-color: #fff;
     /* width: 160px; */
-    /* width: 20%; */
-    flex: 1;
+    width: 20%;
+    /* flex: 1; */
 
     height: 32px;
 }
