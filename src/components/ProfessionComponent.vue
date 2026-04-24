@@ -11,11 +11,11 @@ function filter(profession) {
     <div class="professions">
         <span>Yrke:</span>
         <button @click="filter('All')" id="all">Alla</button>
-        <button @click="filter('carpenter')" id="carpenter">Snickare</button>
-        <button @click="filter('electrician')" id="electrician">Elektriker</button>
-        <button @click="filter('painter')" id="painter">Målare</button>
-        <button @click="filter('plumber')" id="plumber">Rörmockare</button>
-        <button @click="filter('mason')" id="mason">Murare</button>
+        <button @click="filter('Carpenter')" id="carpenter">Snickare</button>
+        <button @click="filter('Electrician')" id="electrician">Elektriker</button>
+        <button @click="filter('Painter')" id="painter">Målare</button>
+        <button @click="filter('Plumber')" id="plumber">Rörmockare</button>
+        <button @click="filter('Mason')" id="mason">Murare</button>
     </div>
 </template>
 
