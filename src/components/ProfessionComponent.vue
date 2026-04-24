@@ -39,6 +39,11 @@ button:hover {
     background-color: #D9D7D7;
 }
 
+button:focus {
+    background-color: #D9D7D7;
+
+}
+
 #all {
     padding: 4px 12px 4px 12px;
 }
