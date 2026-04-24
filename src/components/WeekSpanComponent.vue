@@ -6,9 +6,8 @@
     <div class="container">
         <label>Visa: </label>
         <select>
-            <option>2 veckor</option>
-            <option selected>4 veckor (april-maj)</option>
-            <option>6 veckor</option>
+            <option selected>13/4 - 8/5</option>
+            <option>11/5 - 5/6</option>
         </select>
     </div>
 </template>

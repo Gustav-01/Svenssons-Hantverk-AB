@@ -1,6 +1,5 @@
 <script setup>
-import { onMounted, ref } from 'vue';
-import NameColumnComponent from './components/NameColumnComponent.vue';
+import { onMounted, ref, computed} from 'vue';
 import StatusComponent from './components/StatusComponent.vue'
 import EmployeeService from './services/EmployeeService';
 import ChartComponent from './components/ChartComponent.vue';
@@ -10,15 +9,23 @@ import { Employee } from './entities/Employee';
 import WeekComponent from './components/WeekComponent.vue';
 
 const employees = ref([]);
+const selectedProfession = ref('All')
 const employeeService = new EmployeeService();
 const testEmp = ref(undefined);
 
-async function getData() {
+async function loadData() {
   const data = await employeeService.getAllEmployees();
   employees.value = data;
 }
 
-getData();
+const filteredEmployees = computed(() => {
+    if (selectedProfession.value == 'All') {
+      return employees.value;
+    } 
+    return employees.value.filter(e => e.professions.includes(selectedProfession.value) )
+})
+
+loadData();
 
 testEmp.value = new Employee({
   name: 'Bosse',
@@ -36,8 +43,8 @@ testEmp.value = new Employee({
 
 <template>
   <HeaderComponent />
-  <FilterComponent />
-  <ChartComponent :employees="employees" />
+  <FilterComponent @filterByProfession="selectedProfession = $event"/>
+  <ChartComponent :employees="filteredEmployees" />
   <StatusComponent></StatusComponent>
   <!-- <ul>
     <li v-for="employee in employees" :key="employee.name">Name: {{ employee.name }}</li>
