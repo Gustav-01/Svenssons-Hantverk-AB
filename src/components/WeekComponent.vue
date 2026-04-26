@@ -1,6 +1,6 @@
 <script setup>
 import { Employee } from '@/entities/Employee';
-import { ref, computed } from 'vue';
+import { computed } from 'vue';
 import { addDays, areIntervalsOverlapping, eachDayOfInterval, isWithinInterval } from "date-fns";
 
 const props = defineProps({
@@ -31,15 +31,7 @@ const bookingStatusPerDay = computed(() => {
 
             let dayIndex = 0;
             for (let day of weekDates) {
-                let status = 'available';
-
-                if (isWithinInterval(day, { start: booking.from, end: booking.to })) {
-                    status = booking.status.toLowerCase();
-                    if (status === 'booked') {
-                        const percentage = booking.percentage;
-                        status = status + percentage;
-                    }
-                }
+                let status = getBookingStatus(day, booking);
                 statuses.filter(s => s.index === dayIndex).map(b => b.status = status);
                 dayIndex++;
             }
@@ -51,8 +43,17 @@ const bookingStatusPerDay = computed(() => {
 
 });
 
-function getBookingStatus(booking) {
+function getBookingStatus(day, booking) {
+    let status = 'available';
 
+    if (isWithinInterval(day, { start: booking.from, end: booking.to })) {
+        status = booking.status.toLowerCase();
+        if (status === 'booked') {
+            const percentage = booking.percentage;
+            status = status + percentage;
+        }
+    }
+    return status;
 }
 
 // const weekDates = computed(() => {

@@ -14,8 +14,6 @@ const selectedFirstDateOfWeek = ref();
 
 const firstDateOfWeek = computed(() => {
   if (selectedFirstDateOfWeek.value) {
-    console.log('new date selected: ' + selectedFirstDateOfWeek.value);
-    
     return selectedFirstDateOfWeek.value;
   }
   else {
