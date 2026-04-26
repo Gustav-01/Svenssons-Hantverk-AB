@@ -1,5 +1,6 @@
 <script setup>
 import RowComponent from './RowComponent.vue';
+import ChartHeaderComponent from './ChartHeaderComponent.vue';
 
 defineProps({
     employees: Array,
@@ -10,6 +11,7 @@ defineProps({
 
 <template>
     <div class="chart">
+        <ChartHeaderComponent :firstDateOfWeek="firstDateOfWeek"/>
         <RowComponent v-for="(employee, index) in employees" :key="index" :employee="employee"
             :firstDateOfWeek="firstDateOfWeek" />
     </div>
@@ -20,6 +22,6 @@ defineProps({
     margin-left: 2em;
     width: 80%;
     margin-top: 2em;
-    border: 1px solid #ddd;
 }
+
 </style>
