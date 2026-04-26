@@ -2,19 +2,23 @@
 import { Employee } from '@/entities/Employee';
 import NameColumnComponent from './NameColumnComponent.vue';
 import WeekComponent from './WeekComponent.vue';
+import { addDays } from 'date-fns';
+
 
 defineProps({
-    employee: Employee
+    employee: Employee,
+    firstDateOfWeek: Date
 })
+
 </script>
 
 <template>
     <div class="row">
         <NameColumnComponent :name="employee.name" :professions="employee.professions" />
-        <WeekComponent :employee="employee" :firstDateOfWeek="new Date('2026-05-17')"></WeekComponent>
-        <WeekComponent :employee="employee" :firstDateOfWeek="new Date('2026-05-17')"></WeekComponent>
-        <WeekComponent :employee="employee" :firstDateOfWeek="new Date('2026-05-17')"></WeekComponent>
-        <WeekComponent :employee="employee" :firstDateOfWeek="new Date('2026-05-17')"></WeekComponent>
+        <WeekComponent :employee="employee" :firstDateOfWeek="firstDateOfWeek"></WeekComponent>
+        <WeekComponent :employee="employee" :firstDateOfWeek="addDays(firstDateOfWeek, 7)"></WeekComponent>
+        <WeekComponent :employee="employee" :firstDateOfWeek="addDays(firstDateOfWeek, 14)"></WeekComponent>
+        <WeekComponent :employee="employee" :firstDateOfWeek="addDays(firstDateOfWeek, 21)"></WeekComponent>
     </div>
 </template>
 

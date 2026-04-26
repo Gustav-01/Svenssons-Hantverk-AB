@@ -1,6 +1,6 @@
 <script setup>
 import { Employee } from '@/entities/Employee';
-import { ref } from 'vue';
+import { computed } from 'vue';
 import { addDays, areIntervalsOverlapping, eachDayOfInterval, isWithinInterval } from "date-fns";
 
 const props = defineProps({
@@ -8,48 +8,83 @@ const props = defineProps({
     'firstDateOfWeek': Date,
 });
 
-// const bookingStatusPerDay = ref([]);
-const bookingStatusPerDay = [];
 
-const weekDates = eachDayOfInterval({
-    start: props.firstDateOfWeek,
-    end: addDays(props.firstDateOfWeek, 4),
+const bookingStatusPerDay = computed(() => {
+    let statuses = [];
+
+    const weekDates = eachDayOfInterval({
+        start: props.firstDateOfWeek,
+        end: addDays(props.firstDateOfWeek, 4),
+    });
+
+    for (let i = 0; i < weekDates.length; i++) {
+        statuses.push({ index: i, status: 'available' });
+    }
+
+
+    for (let booking of props.employee.bookings) {
+
+        if (areIntervalsOverlapping(
+            { start: weekDates[0], end: weekDates[4] },
+            { start: booking.from, end: booking.to },
+        )) {
+
+            let dayIndex = 0;
+            for (let day of weekDates) {
+                let status = getBookingStatus(day, booking);
+                statuses.filter(s => s.index === dayIndex).map(b => b.status = status);
+                dayIndex++;
+            }
+
+        }
+    }
+
+    return statuses;
+
 });
 
-for (let i = 0; i < weekDates.length; i++) {
-    bookingStatusPerDay.push({ index: i, status: 'available' });
-}
+function getBookingStatus(day, booking) {
+    let status = 'available';
 
-for (let booking of props.employee.bookings) {
-    if (areIntervalsOverlapping(
-        { start: weekDates[0], end: weekDates[4] },
-        { start: booking.from, end: booking.to },
-    )) {
-        updateBookingStatusPerDay(booking);
-    }
-}
-
-function updateBookingStatusPerDay(booking) {
-    let dayIndex = 0;
-    for (let day of weekDates) {
-        let status = 'available';
-
-        if (isWithinInterval(day, { start: booking.from, end: booking.to })) {
-            status = booking.status.toLowerCase();
-            if (status === 'booked') {
-                const percentage = booking.percentage;
-                status = status + percentage;
-            }
+    if (isWithinInterval(day, { start: booking.from, end: booking.to })) {
+        status = booking.status.toLowerCase();
+        if (status === 'booked') {
+            const percentage = booking.percentage;
+            status = status + percentage;
         }
-        bookingStatusPerDay.filter(b => b.index === dayIndex).map(b => b.status = status);
-        dayIndex++;
     }
+    return status;
 }
+
+// const weekDates = computed(() => {
+//     return eachDayOfInterval({
+//         start: props.firstDateOfWeek,
+//         end: addDays(props.firstDateOfWeek, 4),
+//     });
+// })
+
+
+// for (let i = 0; i < weekDates.value.length; i++) {
+//     bookingStatusPerDay.value.push({ index: i, status: 'available' });
+// }
+
+
+// for (let booking of props.employee.bookings) {
+
+//     if (areIntervalsOverlapping(
+//         { start: weekDates.value[0], end: weekDates.value[4] },
+//         { start: booking.from, end: booking.to },
+//     )) {
+//         getBookingStatus(booking);
+
+//     }
+// }
+
 </script>
 
 <template>
     <div class="week">
-        <div v-for="bookingStatus in bookingStatusPerDay" :class="bookingStatus.status"> </div>
+        <div v-for="bookingStatus in bookingStatusPerDay" :class="bookingStatus.status"></div>
     </div>
 </template>
 
@@ -57,15 +92,12 @@ function updateBookingStatusPerDay(booking) {
 .week {
     display: flex;
     box-sizing: border-box;
-    width: 20%;
     margin: 0.1rem;
-    /* flex: 1; */
+    flex: 1;
 
     div {
         margin: 0.05rem;
-        width: 20%;
-        /* flex: 1; */
-        /* border: 1px solid white; */
+        flex: 1;
     }
 }
 
