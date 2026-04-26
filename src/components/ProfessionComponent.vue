@@ -22,14 +22,18 @@ function filter(profession) {
 <style scoped>
 .professions {
     display: flex;
-    gap: 7px;
+    gap: 9px;
     align-items: center;
 }
 
+span {
+    font-size: 1.2em;
+}
+
 button {
-    padding: 5px 10px;
-    font-size: 1em;
-    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 1.2em;
+    border-radius: 12px;
     border: 1px solid grey;
     background-color: #fff;
     cursor: pointer;
