@@ -6,13 +6,13 @@ import EmployeeService from '@/services/EmployeeService';
 
 const employeeService = new EmployeeService();
 
-const emit = defineEmits(['filterByProfession'])
+const emit = defineEmits(['filterByProfession', 'dateChanged'])
 
 </script>
 
 <template>
     <div>
-        <WeekSpanComponent/>
+        <WeekSpanComponent @dateChanged="emit('dateChanged', $event)"/>
         <ProfessionComponent @filterByProfession="emit('filterByProfession', $event)"/>
     </div>
 </template>

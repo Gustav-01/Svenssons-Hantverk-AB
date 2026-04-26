@@ -1,19 +1,24 @@
-<scrip setup>
+<script setup>
 
-</scrip>
+const emit = defineEmits(['dateChanged']);
+
+const options = [
+    { label: '13/4 - 8/5', date: '2026-04-13' },
+    { label: '11/5 - 5/6', date: '2026-05-11' },
+]
+
+</script>
 
 <template>
     <div class="container">
         <label>Visa: </label>
-        <select>
-            <option selected>13/4 - 8/5</option>
-            <option>11/5 - 5/6</option>
+        <select @change="emit('dateChanged', new Date($event.target.value))">
+            <option selected v-for="option in options" :key="option.date" :value="option.date">{{ option.label }}</option>
         </select>
     </div>
 </template>
-
+ 
 <style scoped>
-
 .container {
     display: flex;
     align-items: center;

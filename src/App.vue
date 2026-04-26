@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue';
+import { onMounted, ref, computed } from 'vue';
 import StatusComponent from './components/StatusComponent.vue'
 import EmployeeService from './services/EmployeeService';
 import ChartComponent from './components/ChartComponent.vue';
@@ -7,8 +7,9 @@ import HeaderComponent from './components/HeaderComponent.vue';
 import FilterComponent from './components/FilterComponent.vue';
 
 const employees = ref([]);
-const selectedProfession = ref('All')
+const selectedProfession = ref('All');
 const employeeService = new EmployeeService();
+const firstDateOfWeek = ref(new Date('2026-04-13'));
 
 async function loadData() {
   const data = await employeeService.getAllEmployees();
@@ -28,7 +29,7 @@ loadData();
 
 <template>
   <HeaderComponent />
-  <FilterComponent @filterByProfession="selectedProfession = $event" />
+  <FilterComponent @filterByProfession="selectedProfession = $event" @dateChanged="firstDateOfWeek = $event"/>
   <ChartComponent :employees="filteredEmployees" />
   <StatusComponent></StatusComponent>
   <!-- <ul>

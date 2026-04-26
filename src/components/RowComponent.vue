@@ -5,9 +5,10 @@ import WeekComponent from './WeekComponent.vue';
 import { addDays } from 'date-fns';
 import { computed } from 'vue';
 
+
 defineProps({
     employee: Employee,
-    startDate: Date,
+    firstDateOfWeek: Date
 })
 
 const test = computed(() => console.log(props.startDate)
@@ -20,10 +21,10 @@ console.log('in row component');
 <template>
     <div class="row">
         <NameColumnComponent :name="employee.name" :professions="employee.professions" />
-        <WeekComponent :employee="employee" :firstDateOfWeek="startDate"></WeekComponent>
-        <WeekComponent :employee="employee" :firstDateOfWeek="addDays(startDate, 6)"></WeekComponent>
-        <WeekComponent :employee="employee" :firstDateOfWeek="new Date('2026-05-17')"></WeekComponent>
-        <WeekComponent :employee="employee" :firstDateOfWeek="new Date('2026-05-17')"></WeekComponent>
+        <WeekComponent :employee="employee" :firstDateOfWeek="firstDateOfWeek"></WeekComponent>
+        <WeekComponent :employee="employee" :firstDateOfWeek="addDays(firstDateOfWeek, 7)"></WeekComponent>
+        <WeekComponent :employee="employee" :firstDateOfWeek="addDays(firstDateOfWeek, 14)"></WeekComponent>
+        <WeekComponent :employee="employee" :firstDateOfWeek="addDays(firstDateOfWeek, 21)"></WeekComponent>
     </div>
 </template>
 

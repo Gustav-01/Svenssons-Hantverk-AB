@@ -8,7 +8,7 @@ const props = defineProps({
     'firstDateOfWeek': Date,
 });
 
-const bookingStatusPerDay = [];
+const bookingStatusPerDay = ref([]);
 
 const weekDates = eachDayOfInterval({
     start: props.firstDateOfWeek,
@@ -24,11 +24,11 @@ for (let booking of props.employee.bookings) {
         { start: weekDates[0], end: weekDates[4] },
         { start: booking.from, end: booking.to },
     )) {
-        updateBookingStatusPerDay(booking);
+        updateBookingStatusPerDay(weekDates, booking);
     }
 }
 
-function updateBookingStatusPerDay(booking) {
+function updateBookingStatusPerDay(weekDates, booking) {
     let dayIndex = 0;
     for (let day of weekDates) {
         let status = 'available';
@@ -37,11 +37,14 @@ function updateBookingStatusPerDay(booking) {
             status = booking.status.toLowerCase();
             if (status === 'booked') {
                 const percentage = booking.percentage;
-                status = status + percentage;
+                status = status + percentage;                
             }
-        }
-        bookingStatusPerDay.filter(b => b.index === dayIndex).map(b => b.status = status);
+
+        }        
+        bookingStatusPerDay.value.push(status);        
         dayIndex++;
+        console.log(status);
+        
     }
 }
 </script>
@@ -53,6 +56,7 @@ function updateBookingStatusPerDay(booking) {
 </template>
 
 <style scoped>
+
 .week {
     display: flex;
     box-sizing: border-box;
@@ -84,4 +88,5 @@ function updateBookingStatusPerDay(booking) {
 .preliminary {
     background: var(--color-preliminary)
 }
+
 </style>
