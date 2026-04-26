@@ -1,10 +1,12 @@
 <script setup>
 import RowComponent from './RowComponent.vue';
 
-defineProps({
+const props = defineProps({
     employees: Array,
     firstDateOfWeek: Date
 })
+
+console.log(props.firstDateOfWeek);
 
 </script>
 

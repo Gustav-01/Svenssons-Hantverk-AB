@@ -3,18 +3,12 @@ import { Employee } from '@/entities/Employee';
 import NameColumnComponent from './NameColumnComponent.vue';
 import WeekComponent from './WeekComponent.vue';
 import { addDays } from 'date-fns';
-import { computed } from 'vue';
 
 
 defineProps({
     employee: Employee,
     firstDateOfWeek: Date
 })
-
-const test = computed(() => console.log(props.startDate)
-)
-console.log('in row component');
-
 
 </script>
 

@@ -1,6 +1,6 @@
 <script setup>
 import { Employee } from '@/entities/Employee';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { addDays, areIntervalsOverlapping, eachDayOfInterval, isWithinInterval } from "date-fns";
 
 const props = defineProps({
@@ -8,45 +8,77 @@ const props = defineProps({
     'firstDateOfWeek': Date,
 });
 
-const bookingStatusPerDay = ref([]);
 
-const weekDates = eachDayOfInterval({
-    start: props.firstDateOfWeek,
-    end: addDays(props.firstDateOfWeek, 4),
-});
+const bookingStatusPerDay = computed(() => {
+    let statuses = [];
 
-for (let i = 0; i < weekDates.length; i++) {
-    bookingStatusPerDay.push({ index: i, status: 'available' });
-}
+    const weekDates = eachDayOfInterval({
+        start: props.firstDateOfWeek,
+        end: addDays(props.firstDateOfWeek, 4),
+    });
 
-for (let booking of props.employee.bookings) {
-    if (areIntervalsOverlapping(
-        { start: weekDates[0], end: weekDates[4] },
-        { start: booking.from, end: booking.to },
-    )) {
-        updateBookingStatusPerDay(weekDates, booking);
+    for (let i = 0; i < weekDates.length; i++) {
+        statuses.push({ index: i, status: 'available' });
     }
-}
 
-function updateBookingStatusPerDay(weekDates, booking) {
-    let dayIndex = 0;
-    for (let day of weekDates) {
-        let status = 'available';
 
-        if (isWithinInterval(day, { start: booking.from, end: booking.to })) {
-            status = booking.status.toLowerCase();
-            if (status === 'booked') {
-                const percentage = booking.percentage;
-                status = status + percentage;                
+    for (let booking of props.employee.bookings) {
+
+        if (areIntervalsOverlapping(
+            { start: weekDates[0], end: weekDates[4] },
+            { start: booking.from, end: booking.to },
+        )) {
+
+            let dayIndex = 0;
+            for (let day of weekDates) {
+                let status = 'available';
+
+                if (isWithinInterval(day, { start: booking.from, end: booking.to })) {
+                    status = booking.status.toLowerCase();
+                    if (status === 'booked') {
+                        const percentage = booking.percentage;
+                        status = status + percentage;
+                    }
+                }
+                statuses.filter(s => s.index === dayIndex).map(b => b.status = status);
+                dayIndex++;
             }
 
-        }        
-        bookingStatusPerDay.value.push(status);        
-        dayIndex++;
-        console.log(status);
-        
+        }
     }
+
+    return statuses;
+
+});
+
+function getBookingStatus(booking) {
+
 }
+
+// const weekDates = computed(() => {
+//     return eachDayOfInterval({
+//         start: props.firstDateOfWeek,
+//         end: addDays(props.firstDateOfWeek, 4),
+//     });
+// })
+
+
+// for (let i = 0; i < weekDates.value.length; i++) {
+//     bookingStatusPerDay.value.push({ index: i, status: 'available' });
+// }
+
+
+// for (let booking of props.employee.bookings) {
+
+//     if (areIntervalsOverlapping(
+//         { start: weekDates.value[0], end: weekDates.value[4] },
+//         { start: booking.from, end: booking.to },
+//     )) {
+//         getBookingStatus(booking);
+
+//     }
+// }
+
 </script>
 
 <template>
@@ -56,7 +88,6 @@ function updateBookingStatusPerDay(weekDates, booking) {
 </template>
 
 <style scoped>
-
 .week {
     display: flex;
     box-sizing: border-box;
@@ -88,5 +119,4 @@ function updateBookingStatusPerDay(weekDates, booking) {
 .preliminary {
     background: var(--color-preliminary)
 }
-
 </style>
