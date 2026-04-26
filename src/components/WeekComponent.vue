@@ -8,7 +8,6 @@ const props = defineProps({
     'firstDateOfWeek': Date,
 });
 
-// const bookingStatusPerDay = ref([]);
 const bookingStatusPerDay = [];
 
 const weekDates = eachDayOfInterval({
@@ -49,7 +48,7 @@ function updateBookingStatusPerDay(booking) {
 
 <template>
     <div class="week">
-        <div v-for="bookingStatus in bookingStatusPerDay" :class="bookingStatus.status"> </div>
+        <div v-for="bookingStatus in bookingStatusPerDay" :class="bookingStatus.status"></div>
     </div>
 </template>
 
@@ -57,15 +56,12 @@ function updateBookingStatusPerDay(booking) {
 .week {
     display: flex;
     box-sizing: border-box;
-    width: 20%;
     margin: 0.1rem;
-    /* flex: 1; */
+    flex: 1;
 
     div {
         margin: 0.05rem;
-        width: 20%;
-        /* flex: 1; */
-        /* border: 1px solid white; */
+        flex: 1;
     }
 }
 
