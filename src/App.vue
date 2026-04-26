@@ -41,8 +41,11 @@ loadData();
 <template>
   <HeaderComponent />
   <FilterComponent @filterByProfession="selectedProfession = $event" @dateChanged="selectedFirstDateOfWeek = $event" />
-  <ChartComponent :employees="filteredEmployees" :firstDateOfWeek="firstDateOfWeek" />
-  <StatusComponent></StatusComponent>
+  <div class="container">
+    <ChartComponent :employees="filteredEmployees" :firstDateOfWeek="firstDateOfWeek" />
+    <StatusComponent></StatusComponent>
+  </div>
+
   <!-- <ul>
     <li v-for="employee in employees" :key="employee.name">Name: {{ employee.name }}</li>
   </ul> -->
@@ -50,4 +53,10 @@ loadData();
 
 </template>
 
-<style scoped></style>
+<style scoped>
+
+.container {
+  display: flex;
+}
+
+</style>

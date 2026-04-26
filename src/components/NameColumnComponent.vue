@@ -44,7 +44,8 @@ const professionImages = {
 }
 
 span {
-    font-size: 13px;
+    font-size: 1em;
+    padding: 5px;
 }
 
 img {

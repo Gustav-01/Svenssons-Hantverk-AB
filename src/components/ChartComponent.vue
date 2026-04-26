@@ -9,18 +9,17 @@ defineProps({
 </script>
 
 <template>
-        <div class="chart">
-            <RowComponent 
-                        v-for="(employee, index) in employees" 
-                        :key="index" 
-                        :employee="employee"
-                        :firstDateOfWeek="firstDateOfWeek"/>
-        </div>
-    </template>
+    <div class="chart">
+        <RowComponent v-for="(employee, index) in employees" :key="index" :employee="employee"
+            :firstDateOfWeek="firstDateOfWeek" />
+    </div>
+</template>
 
-    <style scoped>
-        .chart {
-            padding-left: 2em;
-            width: 90%;
-        }
-    </style>
+<style scoped>
+.chart {
+    margin-left: 2em;
+    width: 80%;
+    margin-top: 2em;
+    border: 1px solid #ddd;
+}
+</style>

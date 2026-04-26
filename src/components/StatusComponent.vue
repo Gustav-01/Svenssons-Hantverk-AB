@@ -32,10 +32,14 @@
 .container {
     display: flex;
     flex-direction: column;
-    gap: 3em;
+    gap: 2.5em;
     padding: 16px;
-    border: 1px solid #ccc;
+    border: 1px solid black;
     width: 200px;
+    margin-top: 2em;
+    height: 50%;
+    margin-left: 2em;
+    border-radius: 5px;
 }
 
 .item {
@@ -67,7 +71,7 @@
 }
 
 .preliminary {
-    background: var(--color-preliminary)
+    background: var(--color-preliminary);
 }
 
 </style>
