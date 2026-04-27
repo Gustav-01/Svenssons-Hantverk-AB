@@ -32,11 +32,11 @@
 .container {
     display: flex;
     flex-direction: column;
-    gap: 2.5em;
-    padding: 16px;
+    gap: 3em;
+    padding: 26px 16px;
     border: 1px solid black;
     width: 200px;
-    margin-top: 2em;
+    margin-top: 5em;
     height: 50%;
     margin-left: 2em;
     border-radius: 5px;
