@@ -1,14 +1,14 @@
 class ApiService {
 
     async getAllData() {
-        
-            const response = await fetch("https://yrgo-web-services.netlify.app/bookings");
 
-            if (!response.ok) {
-                throw new Error(`Problem fetching: ${response.status}`);
-            }
+        const response = await fetch("https://yrgo-web-services.netlify.app/bookings");
 
-            return await response.json();
+        if (!response.ok) {
+            throw new Error(`Problem fetching: ${response.status}`);
+        }
+
+        return await response.json();
     }
 }
 

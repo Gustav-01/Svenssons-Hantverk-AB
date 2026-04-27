@@ -2,7 +2,7 @@
 import RowComponent from './RowComponent.vue';
 import ChartHeaderComponent from './ChartHeaderComponent.vue';
 
-defineProps({
+const props = defineProps({
     'employees': {
         type: Array,
         required: true,
