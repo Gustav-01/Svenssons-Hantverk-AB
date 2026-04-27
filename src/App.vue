@@ -23,12 +23,15 @@ const firstDateOfWeek = computed(() => {
 
 async function loadData() {
   const data = await employeeService.getAllEmployees();
+  if (!data) {
+    alert('Vi har problem med att hämta datan. Kontakta supporten.');
+  }
+
   employees.value = data;
 }
 
 const filteredEmployees = computed(() => {
   if (selectedProfession.value == 'All') {
-
     return employees.value;
   }
   return employees.value.filter(e => e.professions.includes(selectedProfession.value))
@@ -46,17 +49,10 @@ loadData();
     <StatusComponent></StatusComponent>
   </div>
 
-  <!-- <ul>
-    <li v-for="employee in employees" :key="employee.name">Name: {{ employee.name }}</li>
-  </ul> -->
-  <!-- <WeekComponent :employee="testEmp" :firstDateOfWeek="new Date('2026-05-17')"></WeekComponent> -->
-
 </template>
 
 <style scoped>
-
 .container {
   display: flex;
 }
-
 </style>

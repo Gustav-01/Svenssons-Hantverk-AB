@@ -15,7 +15,6 @@ class EmployeeService {
             this._allEmployees = sortedList.map(e => new Employee(e));
         } catch (error) {
             console.error("Fetch failed: " + error.message);
-            alert('Vi har problem med att hämta datan. Kontakta supporten.');
             return;
         }
 
