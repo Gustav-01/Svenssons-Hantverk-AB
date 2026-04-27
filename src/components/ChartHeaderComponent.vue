@@ -4,7 +4,10 @@ import { addDays, eachDayOfInterval, format } from 'date-fns'
 import { sv } from 'date-fns/locale'
 
 const props = defineProps({
-    firstDateOfWeek: Date
+    'firstDateOfWeek': {
+        type: Date,
+        required: true,
+    }
 });
 
 const dates = computed(() => {

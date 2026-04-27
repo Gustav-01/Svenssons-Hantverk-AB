@@ -6,8 +6,14 @@ import { addDays } from 'date-fns';
 
 
 defineProps({
-    employee: Employee,
-    firstDateOfWeek: Date
+    'employee': {
+        type: Employee,
+        required: true,
+    },
+    'firstDateOfWeek': {
+        type: Date,
+        required: true,
+    }
 })
 
 </script>

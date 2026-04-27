@@ -1,3 +1,8 @@
+/**
+ * Data model for a booking of a job for an employee at Svenssons Hantverk. 
+ * Maps a single booking of an employee to the model with the same properties.
+ */
+
 export class Booking {
     constructor(initObj) {
         this.activity = initObj.activity;

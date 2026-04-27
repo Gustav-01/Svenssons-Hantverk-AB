@@ -4,10 +4,15 @@ import { computed } from 'vue';
 import { addDays, areIntervalsOverlapping, eachDayOfInterval, isWithinInterval } from "date-fns";
 
 const props = defineProps({
-    'employee': Employee,
-    'firstDateOfWeek': Date,
+    'employee': {
+        type: Employee,
+        required: true,
+    },
+    'firstDateOfWeek': {
+        type: Date,
+        required: true,
+    }
 });
-
 
 const bookingStatusPerDay = computed(() => {
     let statuses = [];
@@ -55,30 +60,6 @@ function getBookingStatus(day, booking) {
     }
     return status;
 }
-
-// const weekDates = computed(() => {
-//     return eachDayOfInterval({
-//         start: props.firstDateOfWeek,
-//         end: addDays(props.firstDateOfWeek, 4),
-//     });
-// })
-
-
-// for (let i = 0; i < weekDates.value.length; i++) {
-//     bookingStatusPerDay.value.push({ index: i, status: 'available' });
-// }
-
-
-// for (let booking of props.employee.bookings) {
-
-//     if (areIntervalsOverlapping(
-//         { start: weekDates.value[0], end: weekDates.value[4] },
-//         { start: booking.from, end: booking.to },
-//     )) {
-//         getBookingStatus(booking);
-
-//     }
-// }
 
 </script>
 
