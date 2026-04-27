@@ -41,8 +41,8 @@ async function loadData() {
 }
 
 onErrorCaptured((err, instance, info) => {
-  alert('Det har uppstått ett problem. Kontakta supporten.');
   console.error(`Error captured: [${err}] from [${instance}]. Message: ${info}`);
+  alert('Det har uppstått ett problem. Kontakta supporten.');
   return false;
 });
 
