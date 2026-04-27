@@ -15,27 +15,26 @@ const dates = computed(() => {
 });
 
 function formatDate(date) {
-    return format(date, 'EEE', { locale: sv });
+    return format(date, 'd/M');
 }
 
 function formatDay(date) {
-    return format(date, 'd/M');
+    return format(date, 'EEE', { locale: sv });
 }
 
 </script>
 
 <template>
-        <div class="container">
-            <h2 class="staff">Personal</h2>
-            <div v-for="date in dates" :key="date" class="date">
-                <span class="day">{{ formatDay(date) }}</span>
-                <span class="date">{{ formatDate(date) }}</span>
-            </div>
+    <div class="container">
+        <h2 class="staff">Personal</h2>
+        <div v-for="date in dates" :key="date" class="date">
+            <span class="day">{{ formatDay(date) }}</span>
+            <span class="date">{{ formatDate(date) }}</span>
         </div>
+    </div>
 </template>
 
 <style scoped>
-
 .container {
     display: flex;
     margin-bottom: 5px;
@@ -46,6 +45,7 @@ function formatDay(date) {
     width: 235px;
     font-weight: 600;
 }
+
 .date {
     flex: 1;
     display: flex;
