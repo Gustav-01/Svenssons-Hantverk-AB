@@ -3,11 +3,18 @@ import painter from '../assets/painter.png'
 import carpenter from '../assets/carpenter.png'
 import electrician from '../assets/electrician.png'
 import plumber from '../assets/plumber.png'
-import mason from '../assets/mason.png' 
+import mason from '../assets/mason.png'
 
 const props = defineProps({
-    name: String,
-    professions: Array
+    name: {
+        type: String,
+        required: true,
+        default: '[Fel: Namn saknas]'
+    },
+    professions: {
+        type: Array,
+        required: true,
+    },
 })
 
 const professionImages = {
@@ -29,8 +36,7 @@ const professionImages = {
     </div>
 </template>
 
-<style scoped> 
-
+<style scoped>
 .employee-container {
     display: flex;
     align-items: center;

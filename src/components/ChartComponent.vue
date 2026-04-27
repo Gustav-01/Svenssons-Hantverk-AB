@@ -2,9 +2,15 @@
 import RowComponent from './RowComponent.vue';
 import ChartHeaderComponent from './ChartHeaderComponent.vue';
 
-defineProps({
-    employees: Array,
-    firstDateOfWeek: Date
+const props = defineProps({
+    'employees': {
+        type: Array,
+        required: true,
+    },
+    'firstDateOfWeek': {
+        type: Date,
+        required: true,
+    }
 })
 
 </script>

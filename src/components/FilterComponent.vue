@@ -1,10 +1,6 @@
 <script setup>
-import { Employee } from '@/entities/Employee';
 import ProfessionComponent from './ProfessionComponent.vue';
 import WeekSpanComponent from './WeekSpanComponent.vue';
-import EmployeeService from '@/services/EmployeeService';
-
-const employeeService = new EmployeeService();
 
 const emit = defineEmits(['filterByProfession', 'dateChanged'])
 
